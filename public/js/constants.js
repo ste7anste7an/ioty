@@ -17,6 +17,8 @@ var constants = {
     'ioty/monitor_mqtt.mpy',
     'ioty/mqtt.mpy',
     'ioty/neopixel.mpy',
+    'ioty/pupremote.mpy',
+    'ioty/lpf2.mpy',
     'ioty/pin.mpy',
     'ioty/html',
     'ioty/html/index.html',
