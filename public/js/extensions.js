@@ -59,6 +59,17 @@ var extensions = new function() {
         '</p>'
     },
     {
+      id: 'ioty_pupremote',
+      name: 'PUPRemote (Lego)',
+      files: [
+        ['ioty_pupremote.py', 'extensions/ioty_pupremote.py?v=aabaaaaa'],
+      ],
+      description:
+        '<p>' +
+          'PUPRemote extension for comunication with PyBricks Lego Robot.' +
+        '</p>'
+    },
+    {
       id: 'ioty_neopixel',
       name: 'Neopixel (WS2812 LEDs)',
       files: [
@@ -560,7 +571,7 @@ var extensions = new function() {
       id: 'bmp_image',
       name: 'BMP Image',
       files: [
-        ['bmp_image.py', 'extensions/bmp_image.py?v=16689a30'],
+        ['bmp_image.py', 'extensions/bmp_image.py?v=a0313b3f'],
       ],
       description:
         '<p>' +

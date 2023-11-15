@@ -642,6 +642,18 @@
         </shadow>
       </value>
     </block>
+    <block type="i2c_read_bytes">
+      <value name="address">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+      <value name="bytes">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+    </block>
   </category>
   <category name="SPI" colour="#a55b80">
     <block type="spi_init">
@@ -1575,4 +1587,23 @@
     <block type="bmp_image_get_pixel_raw"></block>
   </category>
 
+ <category toolboxitemid="ioty_pupremote" name="PUPRemote" colour="#5b67a5" hidden="true">
+    <block type="pupremote_init">
+      <value name="sensor_id">
+        <shadow type="math_number">
+          <field name="NUM">61</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <block type="pupremote_add_command">
+      <value name="to_hub_fmt">
+       <shadow type="text">
+          <field name="TEXT">BB</field>
+        </shadow>
+      </value>
+      
+    </block>
+    <block type="pupremote_process"></block>
+ </category>
 </xml>

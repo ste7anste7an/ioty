@@ -1,0 +1,21 @@
+{
+    "type": "i2c_read_bytes",
+    "message0": "#blk-i2c_readfrom_addr# %1 #blk-i2c_bytes# %2",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "address",
+        "check": "Number"
+      },
+      {
+        "type": "input_value",
+        "name": "bytes",
+        "check": "Number"
+      }
+    ],
+    "inputsInline": true,
+    "output": null,
+    "colour": 330,
+    "tooltip": "",
+    "helpUrl": ""
+  }

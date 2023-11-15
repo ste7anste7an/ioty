@@ -405,6 +405,24 @@ let MSGS = {
   '#blk-i2c_readfrom_addr#': {
     en: 'i2c read from address',
   },
+  '#blk-i2c_bytes#': {
+    en: '# bytes',
+  },
+  '#blk-pup_init_sensor#':{
+    en:'PUPRemote with sensor id',
+  },
+  '#blk-pup_add_command#': {
+    en: ' PUPRemote add_command function',
+  },
+  '#blk-pup_process#': {
+    en: "PUPRemote process",
+  },
+  '#blk-pup_tohubfmt#':{
+    en:'from hub format'
+  },
+  '#blk-pup_fromhubfmt#':{
+    en:'to hub format'
+  },
   '#main-blocks#': {
     en: 'Blocks',
     tlh: 'Porgh',
@@ -2294,7 +2312,7 @@ let MSGS = {
     en: 'bmp image: render image',
   },
   '#blk-bmp_image_render_tooltip#': {
-    en: 'Renders the image to screen.',
+    en: 'Renders the image to screen. The exact value used for rendering depends on the screen type.',
   },
   '#blk-bmp_image_close#': {
     en: 'bmp image: close file',

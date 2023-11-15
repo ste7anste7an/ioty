@@ -1,0 +1,11 @@
+{
+    "type": "pupremote_process",
+    "message0": "#blk-pup_process#",
+    "args0": [],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": 230,
+    "tooltip": "Use the process in a loop to refresh the sensor values",
+    "helpUrl": ""
+  }

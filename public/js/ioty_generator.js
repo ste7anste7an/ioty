@@ -7,7 +7,7 @@ var ioty_generator = new function() {
 
   // Load Python generators
   this.load = function() {
-    Blockly.Python.addReservedWords('machine,ioty,ioty_wifi,ioty_mqtt,ioty_mqtt_cb,req,ap,mqtt_msg');
+    Blockly.Python.addReservedWords('machine,ioty,ioty_wifi,ioty_mqtt,ioty_mqtt_cb,req,ap');
 
     Blockly.Python.INDENT = '    ';
 
@@ -55,6 +55,11 @@ var ioty_generator = new function() {
     Blockly.Python['neopixel_fill'] = self.neopixel_fill;
     Blockly.Python['neopixel_write'] = self.neopixel_write;
 
+    Blockly.Python['pupremote_init'] = self.pupremote_init;
+    Blockly.Python['pupremote_add_command'] = self.pupremote_add_command;
+    Blockly.Python['pupremote_process'] = self.pupremote_process;
+    
+
     Blockly.Python['mqtt_connect_to_server'] = self.mqtt_connect_to_server;
     Blockly.Python['mqtt_wait_msg'] = self.mqtt_wait_msg;
     Blockly.Python['mqtt_check_msg'] = self.mqtt_check_msg;
@@ -68,6 +73,7 @@ var ioty_generator = new function() {
     Blockly.Python['i2c_readfrom_mem'] = self.i2c_readfrom_mem;
     Blockly.Python['i2c_writeto'] = self.i2c_writeto;
     Blockly.Python['i2c_readfrom'] = self.i2c_readfrom;
+    Blockly.Python['i2c_read_bytes'] = self.i2c_read_bytes;
     Blockly.Python.addReservedWords('i2c');
 
     Blockly.Python['date_time_get'] = self.date_time_get;
@@ -751,6 +757,58 @@ var ioty_generator = new function() {
     return [code, Blockly.Python.ORDER_RELATIONAL];
   };
 
+
+  this.pupremote_init = function(block) {
+    self.imports['pupremote'] = 'import ioty_pupremote as pupremote';
+
+    var sensor_id = Blockly.Python.valueToCode(block, 'sensor_id', Blockly.Python.ORDER_ATOMIC);
+    
+    var code = 'pupremote.init(sensor_id=' + sensor_id + ')\n';
+
+    return code;
+  };
+
+  this.pupremote_add_command = function(block) {
+    //self.imports['pupremote'] = 'import ioty_pupremote as pupremote';
+
+    var pup_function = Blockly.Python.valueToCode(block, 'pup_function', Blockly.Python.ORDER_ATOMIC);
+    var to_hub_fmt = Blockly.Python.valueToCode(block, 'to_hub_fmt', Blockly.Python.ORDER_ATOMIC);
+   // var from_hub_function = Blockly.Python.valueToCode(block, 'to_hub_function', Blockly.Python.ORDER_ATOMIC);
+    
+    //var from_hub_function = function_call.replace(/ */,'').replace(/\(.*\n/, '');
+    
+    var from_hub_fmt = Blockly.Python.valueToCode(block, 'from_hub_fmt', Blockly.Python.ORDER_ATOMIC);
+    // var pup_function_field = block.getField('to_hub_fmt');
+    //var pup_list = block.inputList[0];
+    
+    // if (pup_function_field) {// && pup_function_field.getType() === 'field_procdef') {
+    //    var isprocedure = 'is function';
+    // } else {
+    //    var isprocedure="does not exist or not function";
+    // }
+    // remove arenthesis around function
+    pup_function = pup_function.slice(1,-1)
+    //remove any argumnt
+    pup_function = pup_function.replace(/\(.*\)/,"");
+    if (from_hub_fmt.length==0) {
+      var code = 'pupremote.add_command("' + pup_function + '", to_hub_fmt='+to_hub_fmt+')\n';
+    } else {
+    var code = 'pupremote.add_command("' + pup_function + '", to_hub_fmt='+to_hub_fmt+', from_hub_fmt='+from_hub_fmt+')\n';
+    //var code = 'pupremote.add_commmand(' + to_function.replace('()','').slice(1,-1) + ', to_hub_fmt='+to_hub_fmt+', from_hub_fmt='+from_hub_fmt+')\n';
+    }
+    return code;
+  };
+
+  this.pupremote_process = function(block) {
+    //self.imports['pupremote'] = 'import ioty_pupremote as pupremote';
+
+    //var sensor_id = Blockly.Python.valueToCode(block, 'sensor_id', Blockly.Python.ORDER_ATOMIC);
+    
+    let code = 'pupremote.process()\n';
+
+    return code;
+  };
+
   this.neopixel_init = function(block) {
     self.imports['neopixel'] = 'import ioty_neopixel as neopixel';
 
@@ -1129,9 +1187,13 @@ var ioty_generator = new function() {
 
     var id = block.getFieldValue('id');
     var freq = block.getFieldValue('freq');
-
-    var code = 'i2c = machine.I2C(' + id + ', freq=' + freq + ')\n';
-
+    if (id==2) {
+      var code = 'i2c = machine.I2C( 1, scl=machine.Pin(4), sda=machine.Pin(5) , freq=' + freq + ')\n';  
+    }
+    else {
+      var code = 'i2c = machine.I2C(' + id + ', freq=' + freq + ')\n';
+    
+  }
     return code;
   };
 
@@ -1223,6 +1285,15 @@ var ioty_generator = new function() {
     }
 
     var code = 'struct.unpack(\'' + format + '\', i2c.readfrom(' + address + ', ' + size + stopParam + '))[0]';
+
+    return [code, Blockly.Python.ORDER_ATOMIC];
+  };
+  this.i2c_read_bytes = function(block) {
+    
+    var address = Blockly.Python.valueToCode(block, 'address', Blockly.Python.ORDER_NONE);
+    var nr_bytes = Blockly.Python.valueToCode(block, 'bytes', Blockly.Python.ORDER_NONE);
+    
+    var code = '[i for i in i2c.readfrom(' + address + ', ' + nr_bytes +')]';
 
     return [code, Blockly.Python.ORDER_ATOMIC];
   };

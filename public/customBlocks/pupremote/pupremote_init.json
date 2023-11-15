@@ -1,0 +1,16 @@
+{
+    "type": "pupremote_init",
+    "message0": "#blk-pup_init_sensor# %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "sensor_id"
+      }
+    ],
+    "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": 270,
+    "tooltip": "",
+    "helpUrl": ""
+  }

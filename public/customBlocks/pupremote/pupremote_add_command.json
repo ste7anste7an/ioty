@@ -1,0 +1,25 @@
+{
+    "type": "pupremote_add_command",
+    "message0": "PUPRemote add_command function %1 to hub format %2 from hub format %3",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "pup_function"
+      },
+      {
+        "type": "input_value",
+        "name": "to_hub_fmt"
+      },
+      {
+        "type": "input_value",
+        "name": "from_hub_fmt"
+      }
+    ],
+    "colour": 230,
+    "previousStatement": null,
+    "nextStatement": null,
+    "tooltip": "",
+    "helpUrl": ""
+  }
+
+  
