@@ -1,0 +1,26 @@
+{
+    "type": "i2c_read_mem_bytes",
+    "message0": "#blk-i2c_readfrom_addr# %1  #blk-at_register# %2 #blk-i2c_bytes# %3",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "address",
+        "check": "Number"
+      },
+      {
+        "type": "input_value",
+        "name": "register",
+        "check": "Number"
+      },
+      {
+        "type": "input_value",
+        "name": "bytes",
+        "check": "Number"
+      }
+    ],
+    "inputsInline": true,
+    "output": null,
+    "colour": 330,
+    "tooltip": "",
+    "helpUrl": ""
+  }

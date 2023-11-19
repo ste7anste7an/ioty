@@ -68,12 +68,16 @@ var ioty_generator = new function() {
     Blockly.Python['mqtt_publish'] = self.mqtt_publish;
 
     Blockly.Python['i2c_init'] = self.i2c_init;
+    Blockly.Python['i2c_init_port'] = self.i2c_init_port;
     Blockly.Python['i2c_scan'] = self.i2c_scan;
     Blockly.Python['i2c_writeto_mem'] = self.i2c_writeto_mem;
     Blockly.Python['i2c_readfrom_mem'] = self.i2c_readfrom_mem;
     Blockly.Python['i2c_writeto'] = self.i2c_writeto;
     Blockly.Python['i2c_readfrom'] = self.i2c_readfrom;
     Blockly.Python['i2c_read_bytes'] = self.i2c_read_bytes;
+    Blockly.Python['i2c_read_mem_bytes'] = self.i2c_read_mem_bytes;
+
+    
     Blockly.Python.addReservedWords('i2c');
 
     Blockly.Python['date_time_get'] = self.date_time_get;
@@ -1197,6 +1201,18 @@ var ioty_generator = new function() {
     return code;
   };
 
+  this.i2c_init_port = function(block) {
+    self.imports['machine'] = 'import machine';
+
+    var port = Blockly.Python.valueToCode(block, 'port', Blockly.Python.ORDER_NONE);;
+    var pin_scl =  Blockly.Python.valueToCode(block, 'pin_scl', Blockly.Python.ORDER_NONE);
+    var pin_sda =  Blockly.Python.valueToCode(block, 'pin_sda', Blockly.Python.ORDER_NONE);
+    var code = 'i2c = machine.I2C('+port+', scl=machine.Pin('+pin_scl+'), sda=machine.Pin('+pin_sda+'))\n';  
+  
+    return code;
+  };
+
+
   this.i2c_scan = function(block) {
     var code = 'i2c.scan()';
 
@@ -1288,6 +1304,7 @@ var ioty_generator = new function() {
 
     return [code, Blockly.Python.ORDER_ATOMIC];
   };
+
   this.i2c_read_bytes = function(block) {
     
     var address = Blockly.Python.valueToCode(block, 'address', Blockly.Python.ORDER_NONE);
@@ -1298,6 +1315,18 @@ var ioty_generator = new function() {
     return [code, Blockly.Python.ORDER_ATOMIC];
   };
 
+  this.i2c_read_mem_bytes = function(block) {
+    
+    var address = Blockly.Python.valueToCode(block, 'address', Blockly.Python.ORDER_NONE);
+    var register = Blockly.Python.valueToCode(block, 'register', Blockly.Python.ORDER_NONE);
+    var nr_bytes = Blockly.Python.valueToCode(block, 'bytes', Blockly.Python.ORDER_NONE);
+   
+    var code = '[i for i in i2c.readfrom_mem(' + address + ', ' + register+ ', ' + nr_bytes +')]';
+
+    return [code, Blockly.Python.ORDER_ATOMIC];
+  };
+
+  
   this.date_time_get = function(block) {
     self.imports['machine'] = 'import machine';
 

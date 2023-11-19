@@ -384,6 +384,9 @@ let MSGS = {
   '#blk-i2c_init#': {
     en: 'init i2c on pins',
   },
+  '#blk-i2c_init_port#': {
+    en: 'init i2c on port',
+  },
   '#blk-freq#': {
     en: 'freq',
   },

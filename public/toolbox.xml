@@ -593,6 +593,23 @@
   </category>
   <category name="I2C" colour="#a55b80">
     <block type="i2c_init"></block>
+    <block type="i2c_init_port">
+      <value name="port">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+      <value name="pin_scl">
+        <shadow type="math_number">
+          <field name="NUM">4</field>
+        </shadow>
+      </value>
+      <value name="pin_sda">
+        <shadow type="math_number">
+          <field name="NUM">5</field>
+        </shadow>
+      </value>
+    </block>
     <block type="i2c_scan"></block>
     <block type="i2c_writeto_mem">
       <value name="address">
@@ -644,6 +661,23 @@
     </block>
     <block type="i2c_read_bytes">
       <value name="address">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+      <value name="bytes">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="i2c_read_mem_bytes">
+      <value name="address">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+        <value name="register">
         <shadow type="math_number">
           <field name="NUM">0</field>
         </shadow>

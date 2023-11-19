@@ -1,0 +1,27 @@
+{
+  "type": "i2c_init_port",
+  "message0": "#blk-i2c_init_port# %1 scl %2 sda %3",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "port",
+      "check": "Number"
+    },
+    {
+      "type": "input_value",
+      "name": "pin_scl",
+      "check": "Number"
+    },
+    {
+      "type": "input_value",
+      "name": "pin_sda",
+      "check": "Number"
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 330,
+  "tooltip": "",
+  "helpUrl": ""
+}
